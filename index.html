@@ -6,20 +6,21 @@
   <title>Dressed to Impress: Leveraging Couture in Ivory Coast to Generate Soft Power</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
   
   <style>
-    /* BASE TYPOGRAPHY & LAYOUT UTILITIES SETUP ARCHITECTURE */
+    /* ==========================================
+       1. CORE DESIGN VARIABLES & RESET
+       ========================================== */
     :root {
-      --bg-color: #fcfcfc;
+      --bg-color: #f4f4f4;
+      --page-bg: #ffffff;
       --text-main: #111111;
       --text-muted: #666666;
       --border-light: #e2e2e2;
       --accent-black: #000000;
       --font-body: 'Newsreader', Georgia, serif;
       --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --max-width: 1320px;
-      --gutter: 2.5rem;
     }
 
     * {
@@ -32,91 +33,125 @@
       background-color: var(--bg-color);
       color: var(--text-main);
       font-family: var(--font-body);
-      font-size: 1.125rem;
-      line-height: 1.65;
+      font-size: 10.5pt;
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
-      padding: 0 1.5rem;
+      counter-reset: pageCounter;
     }
 
-    /* EDITORIAL CONTAINER STRUCTURE */
-    .thesis-container {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding-top: 5rem;
-      padding-bottom: 8rem;
+    /* ==========================================
+       2. A4 PAGE CONTAINER ARCHITECTURE
+       ========================================== */
+    .page {
+      width: 210mm;
+      height: 297mm;
+      padding: 20mm 18mm 25mm 18mm;
+      margin: 10mm auto;
+      background: var(--page-bg);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      break-after: page;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      counter-increment: pageCounter;
     }
 
-    /* HEADER & TITLE BLOCK */
+    .page-content {
+      flex: 1;
+    }
+
+    /* CSS PAGE NUMBERING & FOOTER */
+    .page-footer {
+      border-top: 1px solid var(--border-light);
+      padding-top: 3mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-ui);
+      font-size: 8pt;
+      color: var(--text-muted);
+    }
+
+    .page-footer::after {
+      content: "Page " counter(pageCounter);
+      font-weight: 500;
+    }
+
+    /* ==========================================
+       3. HEADER & TITLE BLOCK
+       ========================================== */
     header {
       border-bottom: 1px solid var(--accent-black);
-      padding-bottom: 3.5rem;
-      margin-bottom: 4rem;
+      padding-bottom: 5mm;
+      margin-bottom: 6mm;
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      gap: 1.5rem;
+      gap: 1rem;
     }
 
     .header-meta {
       grid-column: span 12;
       font-family: var(--font-ui);
-      font-size: 0.8rem;
+      font-size: 8pt;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: var(--text-muted);
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.5rem;
     }
 
     .header-title {
       grid-column: span 8;
       font-family: var(--font-ui);
       font-weight: 500;
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
+      font-size: 20pt;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
       color: var(--accent-black);
     }
 
     .header-info {
       grid-column: span 4;
       font-family: var(--font-ui);
-      font-size: 0.85rem;
-      line-height: 1.5;
+      font-size: 8pt;
+      line-height: 1.4;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       border-left: 1px solid var(--border-light);
-      padding-left: 1.5rem;
+      padding-left: 1rem;
     }
 
-    /* LAYOUT GRID FOR THESIS CONTENT */
+    /* ==========================================
+       4. EDITORIAL GRID & TYPOGRAPHY
+       ========================================== */
     .editorial-grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      gap: var(--gutter);
-      margin-bottom: 5rem;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
     }
 
     .section-sidebar {
       grid-column: span 3;
       font-family: var(--font-ui);
-      position: sticky;
-      top: 2rem;
-      height: fit-content;
     }
 
     .section-number {
-      font-size: 0.85rem;
+      font-size: 8.5pt;
       font-weight: 600;
       color: var(--text-muted);
       display: block;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
     }
 
     .section-title {
-      font-size: 1.5rem;
+      font-size: 12pt;
       font-weight: 500;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
     }
 
     .section-body {
@@ -126,38 +161,40 @@
     .section-margin-notes {
       grid-column: span 3;
       font-family: var(--font-ui);
-      font-size: 0.8rem;
-      line-height: 1.4;
+      font-size: 7.5pt;
+      line-height: 1.35;
       color: var(--text-muted);
       border-left: 1px solid var(--border-light);
-      padding-left: 1rem;
+      padding-left: 0.75rem;
     }
 
     p {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       text-align: justify;
       hyphens: auto;
     }
 
     p.lead {
-      font-size: 1.35rem;
-      line-height: 1.5;
+      font-size: 11.5pt;
+      line-height: 1.45;
       font-style: italic;
       color: var(--accent-black);
-      margin-bottom: 2rem;
+      margin-bottom: 1.25rem;
     }
 
-    /* EDITORIAL LIST & INDEX STYLES (TOC & FIGURES) */
+    /* ==========================================
+       5. TABLE OF CONTENTS & INDEX STYLES
+       ========================================== */
     .toc-chapter {
       font-family: var(--font-ui);
       font-weight: 600;
-      font-size: 1.05rem;
-      margin-top: 2rem;
-      margin-bottom: 0.75rem;
+      font-size: 9pt;
+      margin-top: 1rem;
+      margin-bottom: 0.4rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       border-bottom: 1px solid var(--text-main);
-      padding-bottom: 0.3rem;
+      padding-bottom: 0.2rem;
     }
 
     .toc-item {
@@ -165,73 +202,74 @@
       justify-content: space-between;
       align-items: baseline;
       font-family: var(--font-ui);
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
+      font-size: 8pt;
+      margin-bottom: 0.35rem;
     }
 
     .toc-item.sub {
-      padding-left: 1.25rem;
+      padding-left: 0.8rem;
       color: #333;
     }
 
     .toc-item.sub2 {
-      padding-left: 2.25rem;
+      padding-left: 1.5rem;
       color: var(--text-muted);
-      font-size: 0.85rem;
+      font-size: 7.5pt;
     }
 
     .toc-dots {
       flex: 1;
       border-bottom: 1px dotted #ccc;
-      margin: 0 0.5rem;
+      margin: 0 0.4rem;
     }
 
     .keywords-block {
       font-family: var(--font-ui);
-      font-size: 0.85rem;
-      background: #f4f4f4;
-      padding: 1rem 1.25rem;
+      font-size: 8pt;
+      background: #f8f8f8;
+      padding: 0.75rem 1rem;
       border-left: 3px solid var(--accent-black);
-      margin-top: 1.5rem;
-      margin-bottom: 2rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
     }
 
-    /* RESEARCH QUESTIONS / HIGHLIGHT BOXES */
+    /* ==========================================
+       6. HIGHLIGHT BOXES, TABLES & DIAGRAMS
+       ========================================== */
     .highlight-box {
       border-top: 1px solid var(--accent-black);
       border-bottom: 1px solid var(--accent-black);
-      padding: 2rem 0;
-      margin: 2.5rem 0;
+      padding: 1rem 0;
+      margin: 1.25rem 0;
       font-family: var(--font-ui);
     }
 
     .highlight-box .label {
-      font-size: 0.75rem;
+      font-size: 7pt;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--text-muted);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
     }
 
     .highlight-box .content {
-      font-size: 1.5rem;
+      font-size: 11pt;
       font-weight: 400;
       line-height: 1.3;
       letter-spacing: -0.01em;
     }
 
-    /* TABLES STYLE */
     .thesis-table {
       width: 100%;
       border-collapse: collapse;
       font-family: var(--font-ui);
-      font-size: 0.85rem;
-      margin: 2rem 0;
+      font-size: 8pt;
+      margin: 1.25rem 0;
     }
 
     .thesis-table th {
       text-align: left;
-      padding: 0.75rem 0;
+      padding: 0.5rem 0;
       border-bottom: 1px solid var(--accent-black);
       font-weight: 600;
       text-transform: uppercase;
@@ -239,390 +277,405 @@
     }
 
     .thesis-table td {
-      padding: 1rem 0;
+      padding: 0.6rem 0.5rem 0.6rem 0;
       border-bottom: 1px solid var(--border-light);
       vertical-align: top;
     }
 
-    /* DIAGRAMS & FIGURES */
     .figure-container {
       grid-column: span 12;
-      margin: 4rem 0;
-      border-top: 1px solid var(--accent-black);
-      padding-top: 1.5rem;
-    }
-
-    .figure-caption {
-      font-family: var(--font-ui);
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 1rem;
-      display: flex;
-      justify-content: space-between;
+      border: 1px solid var(--border-light);
+      padding: 1.25rem;
+      background: #fafafa;
+      margin-bottom: 1.5rem;
     }
 
     .diagram-svg {
       width: 100%;
-      max-height: 500px;
-      background: #f4f4f4;
-      margin-top: 1rem;
+      height: auto;
+      max-height: 280mm;
+      display: block;
+      margin: 0 auto;
     }
 
-    /* FOOTER / PAGE NUMBERING DISPLAY */
-    .editorial-footer {
-      border-top: 1px solid var(--border-light);
-      padding-top: 2rem;
+    .node {
+      fill-opacity: 0.75;
+      mix-blend-mode: multiply;
+    }
+
+    .label-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      text-anchor: middle;
+      fill: #111;
+    }
+
+    .center-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-anchor: middle;
+      fill: #fff;
+    }
+
+    .figure-caption {
       display: flex;
       justify-content: space-between;
       font-family: var(--font-ui);
-      font-size: 0.8rem;
+      font-size: 7.5pt;
       color: var(--text-muted);
+      margin-top: 0.75rem;
+      border-top: 1px solid var(--border-light);
+      padding-top: 0.5rem;
     }
 
-    /* RESPONSIVE DESIGN ADJUSTMENTS */
-    @media (max-width: 1024px) {
-      .section-sidebar { grid-column: span 12; position: static; margin-bottom: 1rem; }
-      .section-body { grid-column: span 12; }
-      .section-margin-notes { grid-column: span 12; border-left: none; border-top: 1px solid var(--border-light); padding-left: 0; padding-top: 1rem; margin-top: 1rem; }
-      .header-title { grid-column: span 12; }
-      .header-info { grid-column: span 12; border-left: none; border-top: 1px solid var(--border-light); padding-left: 0; padding-top: 1rem; }
+    /* ==========================================
+       7. PRINT STYLESHEET OVERRIDES
+       ========================================== */
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .page {
+        margin: 0;
+        box-shadow: none;
+        width: 210mm;
+        height: 297mm;
+        page-break-after: always;
+        break-after: page;
+      }
+
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="thesis-container">
+  <!-- ==========================================
+       PAGE 1: TITLE & DECLARATION OF ORIGINALITY
+       ========================================== -->
+  <div class="page">
+    <div class="page-content">
+      <header>
+        <div class="header-meta">M.A. Design Thesis</div>
+        <h1 class="header-title">Dressed to Impress: Leveraging Couture in Ivory Coast to Generate Soft Power</h1>
+        <div class="header-info">
+          <p><strong>Author:</strong> Jorianne Daphné Freja Mikkelsen</p>
+          <p><strong>Speciality:</strong> Fashion & Textile Design</p>
+          <p><strong>Institution:</strong> HSLU</p>
+          <p><strong>Date:</strong> 2026</p>
+        </div>
+      </header>
 
-  <!-- HEADER BLOCK -->
-  <header>
-    <div class="header-meta">M.A. Design Thesis</div>
-    <h1 class="header-title">Dressed to Impress: Leveraging Couture in Ivory Coast to Generate Soft Power</h1>
-    <div class="header-info">
-      <p><strong>Author:</strong> Jorianne Daphné Freja Mikkelsen</p>
-      <p><strong>Speciality:</strong> Fashion & Textile Design</p>
-      <p><strong>Institution:</strong> HSLU</p>
-      <p><strong>Date:</strong> 2026</p>
-    </div>
-  </header>
+      <section class="editorial-grid">
+        <div class="section-sidebar">
+          <span class="section-number">i</span>
+          <h2 class="section-title">Declaration</h2>
+        </div>
+        <div class="section-body">
+          <p>I hereby declare that this Master’s thesis is my own original work, except where explicitly acknowledged through academic citation. In the preparation and editing of this document, generative AI tools (such as Large Language Models) were utilized strictly as editorial assistants for sentence structure, proofreading, and stylistic refinement of my original analytical concepts and research data. The core design frameworks, dataset compilations, empirical field research, and theoretical arguments remain entirely my own.</p>
+        </div>
+      </section>
 
-  <!-- DECLARATION OF ORIGINALITY -->
-  <section class="editorial-grid">
-    <div class="section-sidebar">
-      <span class="section-number">i</span>
-      <h2 class="section-title">Declaration</h2>
-    </div>
-    <div class="section-body">
-      <p>I hereby declare that this Master’s thesis is my own original work, except where explicitly acknowledged through academic citation. In the preparation and editing of this document, generative AI tools (such as Large Language Models) were utilized strictly as editorial assistants for sentence structure, proofreading, and stylistic refinement of my original analytical concepts and research data. The core design frameworks, dataset compilations, empirical field research, and theoretical arguments remain entirely my own.</p>
-    </div>
-  </section>
-
-  <!-- ABSTRACT -->
-  <section class="editorial-grid">
-    <div class="section-sidebar">
-      <span class="section-number">ii</span>
-      <h2 class="section-title">Abstract</h2>
-    </div>
-    <div class="section-body">
-      <p>This thesis investigates the structural, material, and formal mechanisms required for Ivorian fashion to establish an autonomous design identity and function as a vehicle of cultural soft power. This study analyses how contemporary Ivorian Couture re-centers traditional West African textile lineages into a sovereign language of modern luxury.</p>
-      <p>The research demonstrates that sartorial sovereignty relies on combining domestic material heritage with complete ownership over the means of production. Through field observations of Abidjan’s hyper-decentralized retail ecosystem, the study highlights how local artisan networks provide an existing baseline for scalable, high-end production.</p>
-      <p>This material reality is evaluated alongside empirical visual data: a quantitative analysis of 177 womenswear looks from Abidjan Fashion Week 2025, which identifies a dominant regional design language defined by structural power cuts, fluid fabrics and heavy material grounding. Case studies illustrate how custom tailored garments serve as dynamic transport systems for national identity on global stages.</p>
-      <p>To bridge practice and policy, the thesis introduces a tripartite speculative design matrix mapping Ivorian sartorial authority across three geographic and formal registers: The Skyline (administrative precision and structured prêt-à-porter), The Ground (ancestral material sovereignty and zero-waste Akan geometry), and The Ocean (avant-garde fluid drapes and high-tech material innovation). Ultimately, the study concludes that while Ivorian couture possesses an undeniable aesthetic vocabulary, transforming local sartorial capital into an enduring engine of soft power requires sovereign trade infrastructure, intellectual property protections, and targeted state investment to retain cultural and economic value at home.</p>
-      
-      <div class="keywords-block">
-        <strong>Keywords:</strong> Ivorian Couture, Soft Power, Sartorial Autonomy, Akan-Baoulé Textiles, Tapa Bark-Cloth, Abidjan Fashion Ecosystem, Fanon, Autonomous Design, Zero-Waste Geometry.
-      </div>
-    </div>
-  </section>
-
-  <!-- TABLE OF CONTENTS -->
-  <section class="editorial-grid">
-    <div class="section-sidebar">
-      <span class="section-number">iii</span>
-      <h2 class="section-title">Table of Contents</h2>
-    </div>
-    <div class="section-body">
-      <div class="toc-chapter">Chapter 1: Introduction</div>
-      <div class="toc-item sub"><span>1.1 Research Question</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>1.2 Research Focus</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>1.3 Research Aim</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>1.4 Areas of Practice</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>1.4.1 Areas of Knowledge & Practice Venn Diagram</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>1.5 Stakeholders and their relationship</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>1.5.1 Stakeholder Map Onion</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>1.6 Key Constraints</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>1.7 Method Mix</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>1.8 Design Intervention</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>1.9 Intervention Method</span><span class="toc-dots"></span><span>[P #]</span></div>
-
-      <div class="toc-chapter">Chapter 2: Literature Review</div>
-      <div class="toc-item sub"><span>2.1 The Architecture of Soft Power & Desire</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>2.1.1 Mechanics of Value Creation: Legibility, Aspiration, and Circulation</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>2.1.2 Structural Asymmetry & the Quantitative Limits of Soft Power Metrics</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>2.2 Pre-Colonial Baseline & Material Intelligence</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>2.2.1 Historical Misconceptions of Pre-Colonial Craft</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>2.2.2 Regional Design Syntax & Material Demarcations</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>2.2.3 Matriarchy & Founding Migrations</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>2.3 Frameworks of Autonomous Design</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>2.3.1 Towards Autonomous Design</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>2.4 Sovereign Circulation & Infrastructure</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>2.4.1 Decentralised Digital Ecosystems & Local Platforms</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>2.4.2 Sovereign Trade Networks</span><span class="toc-dots"></span><span>[P #]</span></div>
-
-      <div class="toc-chapter">Chapter 3: Field Research</div>
-      <div class="toc-item sub"><span>3.1 Market Infrastructure: Beyond Fast-Fashion Monopolies</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>3.1.1 The Absence of Inditex/LVMH Hegemony in Abidjan</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>3.1.2 Decentralised Retail & Independent Ateliers</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>3.2 The Tailor-Made Baseline</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>3.2.1 Bespoke Craftsmanship as Daily Socio-Cultural Habit</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>3.2.2 Local Savoir-Faire vs Imported Mass Production</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>3.3 Interview with Maison Kantys</span><span class="toc-dots"></span><span>[P #]</span></div>
-
-      <div class="toc-chapter">Chapter 4: Formulating Ivorian Couture</div>
-      <div class="toc-item sub"><span>4.1 The Dynamic Medium of Identity</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>4.1.1 Clothing as a Transport System for Cultural Sovereignty</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>4.1.2 The Tarmac Runway & Global Event Spectacle</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>4.2 Grassroots Agency</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>4.2.1 La Sape: Subverting the Suit Vs. Local Production Ownership</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>4.2.2 Comparative Grassroots Movements & Narrative Autonomy</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>4.3 Defining Ivorian Couture</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>4.3.1 Grande Couture & Continuité Déplacée</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>4.3.2 The Climate Imperative & Thermodynamic Deconstruction</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>4.3.3 Empirical Analysis: Abidjan Fashion Week 2025 Dataset</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>4.4 Speculative Design Strategy for Ivory Coast</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>4.4.1 The Skyline (Le Plateau): Modern Administrative Power</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>4.4.2 The Ground (Grand-Bassam): Ancestral Material Sovereignty</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>4.4.3 The Ocean (Assinie): Avant-Garde Play & Fluidity</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>4.5 Prototype</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>4.5.1 Sketching the Composite Silhouette</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>4.5.2 Material Choice: Reconciling Three Material Vocabularies</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>4.5.3 Production Test: Fabricability with a Local Tailor</span><span class="toc-dots"></span><span>[P #]</span></div>
-
-      <div class="toc-chapter">Chapter 5: Risks & Challenges</div>
-      <div class="toc-item sub"><span>5.1 Paradigm & Institutional Friction</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>5.1.1 Structural Foundations of Eurocentric Hegemony</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>5.1.2 Aesthetic Adaptation & Cultural Appropriation</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>5.1.3 Institutional Co-Optation and Spatial Asymmetry</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>5.2 Socio-Cultural Factors & Market Asymmetries</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>5.2.1 Cultural Alienation and Material Devaluation</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>5.2.2 Asymmetric Partnerships, Dual System, & Selective Inclusion</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>5.2.3 Commercial Compromise in Foreign Retail Markets</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>5.3 Economic & Industrial Dynamics</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>5.3.1 Institutional Financing and Archival Erasure</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>5.3.2 Raw Material Extraction and Value Addition Asymmetries</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>5.3.3 Tariff Ceilings and Second-Hand Clothing Imports</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub2"><span>5.3.4 Risk Perception and Capital Access</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>5.4 Synthesis: From Barriers to Strategy</span><span class="toc-dots"></span><span>[P #]</span></div>
-
-      <div class="toc-chapter">Chapter 6: Conclusion</div>
-      <div class="toc-chapter">References</div>
-      <div class="toc-chapter">Appendices</div>
-      <div class="toc-item sub"><span>Appendix A: Maison Kantys Full Interview Transcript VO & Translation</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>Appendix B: Abidjan Fashion Week 2025 Raw Data</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>Appendix C: Abidjan Fashion Week 2025 Looks Line-Up</span><span class="toc-dots"></span><span>[P #]</span></div>
-    </div>
-  </section>
-
-  <!-- LIST OF FIGURES -->
-  <section class="editorial-grid">
-    <div class="section-sidebar">
-      <span class="section-number">iv</span>
-      <h2 class="section-title">List of Figures</h2>
-    </div>
-    <div class="section-body">
-      <div class="toc-item"><span>Figure 1.1 Venn Diagram of Areas of Knowledge & Practice</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item"><span>Figure 1.2 Stakeholder Map</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item"><span>Figure 2.1 Ivory Coast’s Global Soft Power Index (2026) Visualised</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item"><span>Figure 2.2 Comparative Material Analysis</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>2.2a Overview of West African textile and garment traditions</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>2.2b West African Hand-Loomed and Embroidered Tunics</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item"><span>Figure 2.3 West African Talismanic Cotton Textile, Musée du quai Branly</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>2.3a Overview featuring Arabic script, magic squares (wafq), and abjad grids</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>2.3b Detail close-up of calligraphic ink variation and geometries</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item"><span>Figure 2.4 Thembu Ceremonial Ensemble and Glass Beadwork Detail, Musée du quai Branly</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item"><span>Figure 2.5 Contemporary Regional Material Syntaxes, African Fashion Nights, Zurich</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>2.5a–b West African Textiles and Cowrie Adornments by Yawoto</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>2.5c–d Southern African Glass-Beaded Neckpieces by Cynthia Moreku</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item"><span>Figure 2.6 Ivorian Regional Textile Lineages and Akan Material Continuities</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>2.6a Senufo Korhogo Cloth (toile de Korhogo) with Hand-Painted Mud Motifs</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>2.6b Commissioned Narrow-Strip Woven Textiles from Grand-Bassam</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item"><span>Figure 2.7 Gallery View of West African Textile Traditions, Musée du quai Branly</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item"><span>Figure 3.1 Market Infrastructure Analysis</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item"><span>Figure 4.1 Aya Nakamura Performing at the Stade de France in a Custom Cowrie-Shell Gown by Ibrahim Fernandez x Lafalaise Dion</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item"><span>Figure 4.2 Élie Kuame Woven Kente Coats Worn by Ivorian National Team Players for AFCON 2025</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item"><span>Figure 4.3 Ibrahim Fernandez x Maison Orun Custom Travel Ensembles for the 2026 World Cup Delegation</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item"><span>Figure 4.4 Séverin Mouyengo and Sapeurs Promenading in Brazzaville (c. 1970s), "Ma vie dans la Sape" Archival Collection</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item"><span>Figure 4.5 Imane Ayissi Grande Couture Raffia Fringe Ensemble</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>4.5a Museum Installation at Musée du quai Branly</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>4.5b Imane Ayissi Waltzing with Model, Paris Haute Couture Week</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item"><span>Figure 4.6 Empirical Design Analysis of Abidjan Fashion Week 2025 Collections (N=177)</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item"><span>Figure 4.7 Ivoire Trade Center and Aby Concept Store Infrastructure Analysis</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>4.7a–b Exterior Facade and Commercial Entrance</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>4.7c Interior Concourse Retail Layout</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item sub"><span>4.7d–g Aby Concept Store Interior, Merchandising, and Local Designer Displays</span><span class="toc-dots"></span><span>[P #]</span></div>
-      <div class="toc-item"><span>Figure 5.1 Dutch Wax Vlisco Billboard Advertisement in Abidjan ("The Journey of the Sun" Campaign)</span><span class="toc-dots"></span><span>[P #]</span></div>
-    </div>
-  </section>
-
-  <!-- SECTION 1: RESEARCH QUESTION -->
-  <section class="editorial-grid">
-    <div class="section-sidebar">
-      <span class="section-number">01</span>
-      <h2 class="section-title">Research Question & Vantage Point</h2>
-    </div>
-    
-    <div class="section-body">
-      <p class="lead">This thesis is about Ivorian couture. Before turning to it, it is worth situating the vantage point it is written from.</p>
-      
-      <p>As a researcher of Franco-Danish heritage and Afro-European identity, educated within Western European design institutions, I do not stand outside the histories examined here; my own gaze is mediated by the very structures of validation this thesis interrogates. I arrive at Abidjan not as a neutral observer, but as a contemporary iteration of the diaspora traveler whose aesthetic expectations have been shaped by Western norms of legibility. The observation that first made this dynamic visible to me, however, took place not in Ivory Coast but in Vietnam, where I lived from 2024 to 2025.</p>
-
-      <p>That period in Vietnam revealed the extent to which culture functions as an active, defensive form of infrastructure. Cultural continuity was visibly maintained through language, food, ritual, and public symbolism, producing a resilient collective identity. This coherence appeared inseparable from Vietnam's history of successive resistance. Rather than treating culture as a secondary, decorative, or merely symbolic domain, this experience demonstrated that cultural cohesion operates as a primary strategic resource.</p>
-
-      <div class="highlight-box">
-        <div class="label">Primary Inquiry</div>
-        <div class="content">How can Ivory Coast turn local couture into an autonomous engine of soft power?</div>
-      </div>
-
-      <p>Yet, when confronting my memory of Abidjan—Ivory Coast's largest city and de facto economic and cultural centre—this loop of cultural validation was not absent so much as short-circuited by the symbol meant to carry it. The Ivorian flag is omnipresent in Abidjan but it follows the exact three-band vertical structure of the French tricolor. A national symbol built on the coloniser's own template cannot generate the same legible, sovereign shorthand as flags originated from independence movements.</p>
+      <section class="editorial-grid">
+        <div class="section-sidebar">
+          <span class="section-number">ii</span>
+          <h2 class="section-title">Abstract</h2>
+        </div>
+        <div class="section-body">
+          <p>This thesis investigates the structural, material, and formal mechanisms required for Ivorian fashion to establish an autonomous design identity and function as a vehicle of cultural soft power. This study analyses how contemporary Ivorian Couture re-centers traditional West African textile lineages into a sovereign language of modern luxury.</p>
+          <p>The research demonstrates that sartorial sovereignty relies on combining domestic material heritage with complete ownership over the means of production. Through field observations of Abidjan’s hyper-decentralized retail ecosystem, the study highlights how local artisan networks provide an existing baseline for scalable, high-end production.</p>
+          <p>This material reality is evaluated alongside empirical visual data: a quantitative analysis of 177 womenswear looks from Abidjan Fashion Week 2025, which identifies a dominant regional design language defined by structural power cuts, fluid fabrics and heavy material grounding.</p>
+          <div class="keywords-block">
+            <strong>Keywords:</strong> Ivorian Couture, Soft Power, Sartorial Autonomy, Akan-Baoulé Textiles, Tapa Bark-Cloth, Abidjan Fashion Ecosystem, Autonomous Design, Zero-Waste Geometry.
+          </div>
+        </div>
+      </section>
     </div>
 
-    <div class="section-margin-notes">
-      <p><strong>Note 1.1: Comparative Semiotics</strong><br>
-      The desaturation test between the French and Ivorian flags renders them visually indistinguishable, illustrating template reliance.</p>
-      <br>
-      <p><strong>Note 1.2: Comparative Lens</strong><br>
-      Vietnam serves purely as a comparative analytical lens on sovereign self-assertion, not as a core subject of study.</p>
+    <div class="page-footer">
+      <span>M.A. Design Thesis — HSLU</span>
     </div>
-  </section>
+  </div>
 
-  <!-- SECTION 2: RESEARCH FOCUS & PILLARS -->
-  <section class="editorial-grid">
-    <div class="section-sidebar">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Research Focus & Core Pillars</h2>
-    </div>
 
-    <div class="section-body">
-      <p>This research investigates Ivorian couture: how it can function as cultural infrastructure, shaping international perception, aspiration, and cultural legitimacy, and what it would take for a strong, recognisable Ivorian aesthetic identity to operate as an autonomous engine of soft power.</p>
+  <!-- ==========================================
+       PAGE 2: TABLE OF CONTENTS
+       ========================================== -->
+  <div class="page">
+    <div class="page-content">
+      <section class="editorial-grid">
+        <div class="section-sidebar">
+          <span class="section-number">iii</span>
+          <h2 class="section-title">Table of Contents</h2>
+        </div>
+        <div class="section-body" style="grid-column: span 9;">
+          <div class="toc-chapter">Chapter 1: Introduction</div>
+          <div class="toc-item sub"><span>1.1 Research Question</span><span class="toc-dots"></span><span>[P 4]</span></div>
+          <div class="toc-item sub"><span>1.2 Research Focus</span><span class="toc-dots"></span><span>[P 5]</span></div>
+          <div class="toc-item sub"><span>1.3 Research Aim</span><span class="toc-dots"></span><span>[P 5]</span></div>
+          <div class="toc-item sub"><span>1.4 Areas of Practice</span><span class="toc-dots"></span><span>[P 6]</span></div>
+          <div class="toc-item sub2"><span>1.4.1 Areas of Knowledge & Practice Venn Diagram</span><span class="toc-dots"></span><span>[P 6]</span></div>
+          <div class="toc-item sub"><span>1.5 Stakeholders and their relationship</span><span class="toc-dots"></span><span>[P 7]</span></div>
+          <div class="toc-item sub2"><span>1.5.1 Stakeholder Map Onion</span><span class="toc-dots"></span><span>[P 7]</span></div>
+          <div class="toc-item sub"><span>1.6 Key Constraints</span><span class="toc-dots"></span><span>[P 7]</span></div>
+          <div class="toc-item sub"><span>1.7 Method Mix</span><span class="toc-dots"></span><span>[P 8]</span></div>
 
-      <table class="thesis-table">
-        <thead>
-          <tr>
-            <th>Pillar Framework</th>
-            <th>Theoretical Core</th>
-            <th>Application Scope</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>01. Theoretical & Psychological</strong></td>
-            <td>Fanon's 3-Phase Framework & Amin's Eurocentric Ideology</td>
-            <td>Deconstructing colonial assimilation & reclaiming historical continuity (Akan-Baoulé).</td>
-          </tr>
-          <tr>
-            <td><strong>02. Sartorial Subversion</strong></td>
-            <td>La Sape to Imane Ayissi's Grande Couture</td>
-            <td>Grassroots subversion to high-fashion blueprints for Ivorian couture autonomy.</td>
-          </tr>
-          <tr>
-            <td><strong>03. Political Economy</strong></td>
-            <td>Ha-Joon Chang's Dependency Model</td>
-            <td>Overcoming raw material export dependencies via digital/spatial platforms.</td>
-          </tr>
-        </tbody>
-      </table>
+          <div class="toc-chapter">Chapter 2: Literature Review</div>
+          <div class="toc-item sub"><span>2.1 The Architecture of Soft Power & Desire</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item sub2"><span>2.1.1 Mechanics of Value Creation: Legibility, Aspiration, and Circulation</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item sub2"><span>2.1.2 Structural Asymmetry & the Quantitative Limits of Soft Power Metrics</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item sub"><span>2.2 Pre-Colonial Baseline & Material Intelligence</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item sub2"><span>2.2.1 Historical Misconceptions of Pre-Colonial Craft</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item sub2"><span>2.2.2 Regional Design Syntax & Material Demarcations</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item sub2"><span>2.2.3 Matriarchy & Founding Migrations</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item sub"><span>2.3 Frameworks of Autonomous Design</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item sub"><span>2.4 Sovereign Circulation & Infrastructure</span><span class="toc-dots"></span><span>[P #]</span></div>
 
-      <p>The research proposes a speculative "Ivorian fashion identity"—a deliberately constructed aesthetic language, argued from within one Francophone West African context shaped by French colonial assimilation policy. Proposing this identity gives Ivorian couture a legible, coherent language to circulate on, rather than leaving that language undefined.</p>
+          <div class="toc-chapter">Chapter 3: Field Research</div>
+          <div class="toc-item sub"><span>3.1 Market Infrastructure: Beyond Fast-Fashion Monopolies</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item sub"><span>3.2 The Tailor-Made Baseline</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item sub"><span>3.3 Interview with Maison Kantys</span><span class="toc-dots"></span><span>[P #]</span></div>
+        </div>
+      </section>
     </div>
 
-    <div class="section-margin-notes">
-      <p><strong>Structural Risk:</strong><br>
-      Local production faces a system positioned to export raw material rather than finished, high-margin goods.</p>
+    <div class="page-footer">
+      <span>M.A. Design Thesis — HSLU</span>
     </div>
-  </section>
+  </div>
 
-  <!-- SECTION 3: VISUALIZATION INTERVENTION -->
-  <section class="editorial-grid">
-    <div class="figure-container">
-      <div class="section-sidebar" style="position:static; margin-bottom:1rem;">
-        <span class="section-number">Figure 1.1</span>
-        <h2 class="section-title">Theoretical Mapping: Areas of Knowledge & Practice</h2>
-      </div>
-      
-      <!-- SVG REACTION OF THE KNOWLEDGE MAP -->
-      <svg class="diagram-svg" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
-        <style>
-          .node { fill-opacity: 0.75; mix-blend-mode: multiply; }
-          .label-text { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; text-anchor: middle; fill: #111; }
-          .center-text { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; text-anchor: middle; fill: #fff; }
-        </style>
+
+  <!-- ==========================================
+       PAGE 3: LIST OF FIGURES
+       ========================================== -->
+  <div class="page">
+    <div class="page-content">
+      <section class="editorial-grid">
+        <div class="section-sidebar">
+          <span class="section-number">iv</span>
+          <h2 class="section-title">List of Figures</h2>
+        </div>
+        <div class="section-body" style="grid-column: span 9;">
+          <div class="toc-item"><span>Figure 1.1 Visualisation 1.1 — Areas of Knowledge & Practice Interdisciplinary Diagram</span><span class="toc-dots"></span><span>[P 6]</span></div>
+          <div class="toc-item"><span>Figure 1.2 Stakeholder Systems and Constraints Matrix</span><span class="toc-dots"></span><span>[P 7]</span></div>
+          <div class="toc-item"><span>Figure 2.1 Ivory Coast’s Global Soft Power Index Visualised</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item"><span>Figure 2.2 Comparative Material Analysis</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item sub"><span>2.2a Overview of West African textile and garment traditions</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item sub"><span>2.2b West African Hand-Loomed and Embroidered Tunics</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item"><span>Figure 2.3 West African Talismanic Cotton Textile, Musée du quai Branly</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item"><span>Figure 2.4 Thembu Ceremonial Ensemble and Glass Beadwork Detail, Musée du quai Branly</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item"><span>Figure 2.5 Contemporary Regional Material Syntaxes, African Fashion Nights, Zurich</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item"><span>Figure 2.6 Ivorian Regional Textile Lineages and Akan Material Continuities</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item"><span>Figure 3.1 Market Infrastructure Analysis</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item"><span>Figure 4.1 Aya Nakamura Performing at the Stade de France in a Custom Cowrie-Shell Gown</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item"><span>Figure 4.2 Élie Kuame Woven Kente Coats Worn by Ivorian National Team Players</span><span class="toc-dots"></span><span>[P #]</span></div>
+          <div class="toc-item"><span>Figure 4.6 Empirical Design Analysis of Abidjan Fashion Week 2025 Collections (N=177)</span><span class="toc-dots"></span><span>[P #]</span></div>
+        </div>
+      </section>
+    </div>
+
+    <div class="page-footer">
+      <span>M.A. Design Thesis — HSLU</span>
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       PAGE 4: SECTION 01 - RESEARCH QUESTION
+       ========================================== -->
+  <div class="page">
+    <div class="page-content">
+      <section class="editorial-grid">
+        <div class="section-sidebar">
+          <span class="section-number">01</span>
+          <h2 class="section-title">Research Question & Vantage Point</h2>
+        </div>
         
-        <!-- CIRCLES REPRESENTING DISCIPLINES -->
-        <circle class="node" cx="400" cy="225" r="90" fill="#1e293b" />
-        <circle class="node" cx="400" cy="110" r="65" fill="#93c5fd" />
-        <circle class="node" cx="510" cy="160" r="60" fill="#3b82f6" />
-        <circle class="node" cx="510" cy="290" r="70" fill="#ef4444" />
-        <circle class="node" cx="410" cy="340" r="50" fill="#fca5a5" />
-        <circle class="node" cx="310" cy="320" r="45" fill="#fdba74" />
-        <circle class="node" cx="280" cy="230" r="65" fill="#f43f5e" />
-        <circle class="node" cx="300" cy="140" r="55" fill="#cbd5e1" />
+        <div class="section-body">
+          <p class="lead">This thesis is about Ivorian couture. Before turning to it, it is worth situating the vantage point it is written from.</p>
+          
+          <p>As a researcher of Franco-Danish heritage and Afro-European identity, educated within Western European design institutions, I do not stand outside the histories examined here; my own gaze is mediated by the very structures of validation this thesis interrogates. I arrive at Abidjan not as a neutral observer, but as a contemporary iteration of the diaspora traveler whose aesthetic expectations have been shaped by Western norms of legibility. The observation that first made this dynamic visible to me, however, took place not in Ivory Coast but in Vietnam, where I lived from 2024 to 2025.</p>
 
-        <!-- LABELS -->
-        <text x="400" y="220" class="center-text">FASHION &amp;</text>
-        <text x="400" y="235" class="center-text">TEXTILE DESIGN</text>
+          <p>That period in Vietnam revealed the extent to which culture functions as an active, defensive form of infrastructure. Cultural continuity was visibly maintained through language, food, ritual, and public symbolism, producing a resilient collective identity. This coherence appeared inseparable from Vietnam's history of successive resistance. Rather than treating culture as a secondary, decorative, or merely symbolic domain, this experience demonstrated that cultural cohesion operates as a primary strategic resource.</p>
 
-        <text x="400" y="105" class="label-text">PSYCHOLOGY OF</text>
-        <text x="400" y="117" class="label-text">CULTURAL IDENTITY</text>
+          <div class="highlight-box">
+            <div class="label">Primary Inquiry</div>
+            <div class="content">How can Ivory Coast turn local couture into an autonomous engine of soft power?</div>
+          </div>
 
-        <text x="510" y="158" class="label-text">MEDIA &amp; VISUAL</text>
-        <text x="510" y="170" class="label-text">CULTURE STUDIES</text>
+          <p>Yet, when confronting my memory of Abidjan—Ivory Coast's largest city and de facto economic and cultural centre—this loop of cultural validation was not absent so much as short-circuited by the symbol meant to carry it. The Ivorian flag is omnipresent in Abidjan but it follows the exact three-band vertical structure of the French tricolor. A national symbol built on the coloniser's own template cannot generate the same legible, sovereign shorthand as flags originated from independence movements.</p>
+        </div>
 
-        <text x="510" y="288" class="label-text">POLITICAL SCIENCE</text>
-        <text x="510" y="300" class="label-text">&amp; GEOPOLITICS</text>
-
-        <text x="280" y="228" class="label-text">AFRICAN HISTORY &amp;</text>
-        <text x="280" y="240" class="label-text">MATERIAL CULTURE</text>
-      </svg>
-
-      <div class="figure-caption">
-        <span>Visualisation 1.1 — Interdisciplinary Weight Distribution &amp; Conceptual Intersections.</span>
-        <span>Source: Thesis Conceptual Framework</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 4: STAKEHOLDER SYSTEM -->
-  <section class="editorial-grid">
-    <div class="section-sidebar">
-      <span class="section-number">03</span>
-      <h2 class="section-title">Stakeholder Systems &amp; Constraints</h2>
+        <div class="section-margin-notes">
+          <p><strong>Note 1.1: Comparative Semiotics</strong><br>
+          The desaturation test between the French and Ivorian flags renders them visually indistinguishable, illustrating template reliance.</p>
+          <br>
+          <p><strong>Note 1.2: Comparative Lens</strong><br>
+          Vietnam serves purely as a comparative analytical lens on sovereign self-assertion, not as a core subject of study.</p>
+        </div>
+      </section>
     </div>
 
-    <div class="section-body">
-      <p>The stakeholder system operating around Ivorian fashion comprises three distinct structural rings:</p>
-      
-      <p><strong>Core (Cultural Production System):</strong> Independent designers, couturiers de famille, neighbourhood tailoring guilds, and material artisans (Tapa bark-cloth harvesters, Kente and Baoulé weavers) sit at the actual centre of this ecosystem. They decide what reads as desirable and contemporary without waiting on institutional direction.</p>
+    <div class="page-footer">
+      <span>M.A. Design Thesis — HSLU</span>
+    </div>
+  </div>
 
-      <p><strong>Direct (Circulation Ecosystem):</strong> Domestic consumers, diaspora, high-visibility cultural ambassadors (e.g., national football team tarmac looks), and local platforms like Abidjan Fashion Week.</p>
 
-      <p><strong>Indirect (Institutional Frameworks):</strong> State institutions including the Ministry of Culture, INSAAC, and UNESCO partnerships. Their involvement to date has been reactive and event-based rather than architectural.</p>
+  <!-- ==========================================
+       PAGE 5: SECTION 02 - RESEARCH FOCUS & PILLARS
+       ========================================== -->
+  <div class="page">
+    <div class="page-content">
+      <section class="editorial-grid">
+        <div class="section-sidebar">
+          <span class="section-number">02</span>
+          <h2 class="section-title">Research Focus & Core Pillars</h2>
+        </div>
+
+        <div class="section-body">
+          <p>This research investigates Ivorian couture: how it can function as cultural infrastructure, shaping international perception, aspiration, and cultural legitimacy, and what it would take for a strong, recognisable Ivorian aesthetic identity to operate as an autonomous engine of soft power.</p>
+
+          <table class="thesis-table">
+            <thead>
+              <tr>
+                <th>Pillar Framework</th>
+                <th>Theoretical Core</th>
+                <th>Application Scope</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>01. Theoretical & Psychological</strong></td>
+                <td>Fanon's 3-Phase Framework & Amin's Eurocentric Ideology</td>
+                <td>Deconstructing colonial assimilation & reclaiming historical continuity (Akan-Baoulé).</td>
+              </tr>
+              <tr>
+                <td><strong>02. Sartorial Subversion</strong></td>
+                <td>La Sape to Imane Ayissi's Grande Couture</td>
+                <td>Grassroots subversion to high-fashion blueprints for Ivorian couture autonomy.</td>
+              </tr>
+              <tr>
+                <td><strong>03. Political Economy</strong></td>
+                <td>Ha-Joon Chang's Dependency Model</td>
+                <td>Overcoming raw material export dependencies via digital/spatial platforms.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>The research proposes a speculative "Ivorian fashion identity"—a deliberately constructed aesthetic language, argued from within one Francophone West African context shaped by French colonial assimilation policy. Proposing this identity gives Ivorian couture a legible, coherent language to circulate on, rather than leaving that language undefined.</p>
+        </div>
+
+        <div class="section-margin-notes">
+          <p><strong>Structural Risk:</strong><br>
+          Local production faces a system positioned to export raw material rather than finished, high-margin goods.</p>
+        </div>
+      </section>
     </div>
 
-    <div class="section-margin-notes">
-      <p><strong>Core Constraints:</strong><br>
-      • <em>Institutional Risks:</em> Lack of centralized policy or domestic protectionism.<br>
-      • <em>Material Value-Chain Risks:</em> High labor times vs. fast commercial imports.<br>
-      • <em>Interpretive Risks:</em> Binary trap between rigid "authenticity" and Eurocentric baselines.</p>
+    <div class="page-footer">
+      <span>M.A. Design Thesis — HSLU</span>
     </div>
-  </section>
+  </div>
 
-  <!-- FOOTER -->
-  <footer class="editorial-footer">
-    <span>M.A. Design Thesis — Intro</span>
-    <span>Editorial Visual System</span>
-    <span>Page 01</span>
-  </footer>
 
-</div>
+  <!-- ==========================================
+       PAGE 6: VISUALIZATION INTERVENTION (SVG DIAGRAM)
+       ========================================== -->
+  <div class="page">
+    <div class="page-content">
+      <section class="editorial-grid">
+        <div class="figure-container">
+          <div class="section-sidebar" style="position:static; margin-bottom:1rem; width: 100%;">
+            <span class="section-number">Figure 1.1</span>
+            <h2 class="section-title">Theoretical Mapping: Areas of Knowledge & Practice</h2>
+          </div>
+          
+          <!-- SVG MAP OF KNOWLEDGE -->
+          <svg class="diagram-svg" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+            <!-- CIRCLES REPRESENTING DISCIPLINES -->
+            <circle class="node" cx="400" cy="225" r="90" fill="#1e293b" />
+            <circle class="node" cx="400" cy="110" r="65" fill="#93c5fd" />
+            <circle class="node" cx="510" cy="160" r="60" fill="#3b82f6" />
+            <circle class="node" cx="510" cy="290" r="70" fill="#ef4444" />
+            <circle class="node" cx="410" cy="340" r="50" fill="#fca5a5" />
+            <circle class="node" cx="310" cy="320" r="45" fill="#fdba74" />
+            <circle class="node" cx="280" cy="230" r="65" fill="#f43f5e" />
+            <circle class="node" cx="300" cy="140" r="55" fill="#cbd5e1" />
+
+            <!-- LABELS -->
+            <text x="400" y="220" class="center-text">FASHION &amp;</text>
+            <text x="400" y="235" class="center-text">TEXTILE DESIGN</text>
+
+            <text x="400" y="105" class="label-text">PSYCHOLOGY OF</text>
+            <text x="400" y="117" class="label-text">CULTURAL IDENTITY</text>
+
+            <text x="510" y="158" class="label-text">MEDIA &amp; VISUAL</text>
+            <text x="510" y="170" class="label-text">CULTURE STUDIES</text>
+
+            <text x="510" y="288" class="label-text">POLITICAL SCIENCE</text>
+            <text x="510" y="300" class="label-text">&amp; GEOPOLITICS</text>
+
+            <text x="280" y="228" class="label-text">AFRICAN HISTORY &amp;</text>
+            <text x="280" y="240" class="label-text">MATERIAL CULTURE</text>
+          </svg>
+
+          <div class="figure-caption">
+            <span>Visualisation 1.1 — Interdisciplinary Weight Distribution &amp; Conceptual Intersections.</span>
+            <span>Source: Thesis Conceptual Framework</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="page-footer">
+      <span>M.A. Design Thesis — HSLU</span>
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       PAGE 7: STAKEHOLDER SYSTEMS & CONSTRAINTS
+       ========================================== -->
+  <div class="page">
+    <div class="page-content">
+      <section class="editorial-grid">
+        <div class="section-sidebar">
+          <span class="section-number">03</span>
+          <h2 class="section-title">Stakeholder Systems &amp; Constraints</h2>
+        </div>
+
+        <div class="section-body">
+          <p class="lead">The stakeholder system operating around Ivorian fashion comprises three distinct structural rings:</p>
+          
+          <p><strong>Core (Cultural Production System):</strong> Independent designers, couturiers de famille, neighbourhood tailoring guilds, and material artisans (Tapa bark-cloth harvesters, Kente and Baoulé weavers) sit at the actual centre of this ecosystem. They decide what reads as desirable and contemporary without waiting on institutional direction.</p>
+
+          <p><strong>Direct (Circulation Ecosystem):</strong> Domestic consumers, diaspora, high-visibility cultural ambassadors (e.g., national football team tarmac looks), and local platforms like Abidjan Fashion Week.</p>
+
+          <p><strong>Indirect (Institutional Frameworks):</strong> State institutions including the Ministry of Culture, INSAAC, and UNESCO partnerships. Their involvement to date has been reactive and event-based rather than architectural.</p>
+        </div>
+
+        <div class="section-margin-notes">
+          <p><strong>Core Constraints:</strong></p>
+          <p>• <em>Institutional Risks:</em> Lack of centralized policy or domestic protectionism.</p>
+          <p>• <em>Material Value-Chain Risks:</em> High labor times vs. fast commercial imports.</p>
+          <p>• <em>Interpretive Risks:</em> Binary trap between rigid "authenticity" and Eurocentric baselines.</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="page-footer">
+      <span>M.A. Design Thesis — HSLU</span>
+    </div>
+  </div>
 
 </body>
 </html>
