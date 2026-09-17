@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leveraging Couture in Ivory Coast to Generate Soft Power</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  
+  <style>
+    /* BASE TYPOGRAPHY & LAYOUT UTILITIES SETUP ARCHITECTURE */
+    :root {
+      --bg-color: #fcfcfc;
+      --text-main: #111111;
+      --text-muted: #666666;
+      --border-light: #e2e2e2;
+      --accent-black: #000000;
+      --font-body: 'Newsreader', Georgia, serif;
+      --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --max-width: 1320px;
+      --gutter: 2.5rem;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      padding: 0 1.5rem;
+    }
+
+    /* EDITORIAL CONTAINER STRUCTURE */
+    .thesis-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding-top: 5rem;
+      padding-bottom: 8rem;
+    }
+
+    /* HEADER & TITLE BLOCK */
+    header {
+      border-bottom: 1px solid var(--accent-black);
+      padding-bottom: 3.5rem;
+      margin-bottom: 4rem;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.5rem;
+    }
+
+    .header-meta {
+      grid-column: span 12;
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .header-title {
+      grid-column: span 8;
+      font-family: var(--font-ui);
+      font-weight: 500;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--accent-black);
+    }
+
+    .header-info {
+      grid-column: span 4;
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      border-left: 1px solid var(--border-light);
+      padding-left: 1.5rem;
+    }
+
+    /* LAYOUT GRID FOR THESIS CONTENT */
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--gutter);
+      margin-bottom: 5rem;
+    }
+
+    .section-sidebar {
+      grid-column: span 3;
+      font-family: var(--font-ui);
+      position: sticky;
+      top: 2rem;
+      height: fit-content;
+    }
+
+    .section-number {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .section-body {
+      grid-column: span 6;
+    }
+
+    .section-margin-notes {
+      grid-column: span 3;
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: var(--text-muted);
+      border-left: 1px solid var(--border-light);
+      padding-left: 1rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    p.lead {
+      font-size: 1.35rem;
+      line-height: 1.5;
+      font-style: italic;
+      color: var(--accent-black);
+      margin-bottom: 2rem;
+    }
+
+    /* RESEARCH QUESTIONS / HIGHLIGHT BOXES */
+    .highlight-box {
+      border-top: 1px solid var(--accent-black);
+      border-bottom: 1px solid var(--accent-black);
+      padding: 2rem 0;
+      margin: 2.5rem 0;
+      font-family: var(--font-ui);
+    }
+
+    .highlight-box .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .highlight-box .content {
+      font-size: 1.5rem;
+      font-weight: 400;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    /* TABLES STYLE */
+    .thesis-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      margin: 2rem 0;
+    }
+
+    .thesis-table th {
+      text-align: left;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--accent-black);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .thesis-table td {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-light);
+      vertical-align: top;
+    }
+
+    /* DIAGRAMS & FIGURES */
+    .figure-container {
+      grid-column: span 12;
+      margin: 4rem 0;
+      border-top: 1px solid var(--accent-black);
+      padding-top: 1.5rem;
+    }
+
+    .figure-caption {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .diagram-svg {
+      width: 100%;
+      max-height: 500px;
+      background: #f4f4f4;
+      margin-top: 1rem;
+    }
+
+    /* FOOTER / PAGE NUMBERING DISPLAY */
+    .editorial-footer {
+      border-top: 1px solid var(--border-light);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* RESPONSIVE DESIGN ADJUSTMENTS */
+    @media (max-width: 1024px) {
+      .section-sidebar { grid-column: span 12; position: static; margin-bottom: 1rem; }
+      .section-body { grid-column: span 12; }
+      .section-margin-notes { grid-column: span 12; border-left: none; border-top: 1px solid var(--border-light); padding-left: 0; padding-top: 1rem; margin-top: 1rem; }
+      .header-title { grid-column: span 12; }
+      .header-info { grid-column: span 12; border-left: none; border-top: 1px solid var(--border-light); padding-left: 0; padding-top: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="thesis-container">
+
+  <!-- HEADER BLOCK -->
+  <header>
+    <div class="header-meta">M.A. Design Thesis — Section I: Introductory Framework</div>
+    <h1 class="header-title">Ivorian Couture as Cultural Infrastructure</h1>
+    <div class="header-info">
+      <p><strong>Author:</strong> Master Candidate</p>
+      <p><strong>Speciality:</strong> Fashion & Textile Design</p>
+      <p><strong>Institution:</strong> HSLU Design & Kunst</p>
+      <p><strong>Date:</strong> 2026</p>
+    </div>
+  </header>
+
+  <!-- SECTION 1: RESEARCH QUESTION -->
+  <section class="editorial-grid">
+    <div class="section-sidebar">
+      <span class="section-number">01</span>
+      <h2 class="section-title">Research Question & Vantage Point</h2>
+    </div>
+    
+    <div class="section-body">
+      <p class="lead">This thesis is about Ivorian couture. Before turning to it, it is worth situating the vantage point it is written from.</p>
+      
+      <p>As a researcher of Franco-Danish heritage and Afro-European identity, educated within Western European design institutions, I do not stand outside the histories examined here; my own gaze is mediated by the very structures of validation this thesis interrogates[cite: 1]. I arrive at Abidjan not as a neutral observer, but as a contemporary iteration of the diaspora traveler whose aesthetic expectations have been shaped by Western norms of legibility[cite: 1]. The observation that first made this dynamic visible to me, however, took place not in Ivory Coast but in Vietnam, where I lived from 2024 to 2025[cite: 1].</p>
+
+      <p>That period in Vietnam revealed the extent to which culture functions as an active, defensive form of infrastructure[cite: 1]. Cultural continuity was visibly maintained through language, food, ritual, and public symbolism, producing a resilient collective identity[cite: 1]. This coherence appeared inseparable from Vietnam's history of successive resistance[cite: 1]. Rather than treating culture as a secondary, decorative, or merely symbolic domain, this experience demonstrated that cultural cohesion operates as a primary strategic resource[cite: 1].</p>
+
+      <div class="highlight-box">
+        <div class="label">Primary Inquiry</div>
+        <div class="content">How can Ivory Coast turn local couture into an autonomous engine of soft power?[cite: 1]</div>
+      </div>
+
+      <p>Yet, when confronting my memory of Abidjan—Ivory Coast's largest city and de facto economic and cultural centre—this loop of cultural validation was not absent so much as short-circuited by the symbol meant to carry it[cite: 1]. The Ivorian flag is omnipresent in Abidjan but it follows the exact three-band vertical structure of the French tricolor[cite: 1]. A national symbol built on the coloniser's own template cannot generate the same legible, sovereign shorthand as flags originated from independence movements[cite: 1].</p>
+    </div>
+
+    <div class="section-margin-notes">
+      <p><strong>Note 1.1: Comparative Semiotics</strong><br>
+      The desaturation test between the French and Ivorian flags renders them visually indistinguishable, illustrating template reliance[cite: 1].</p>
+      <br>
+      <p><strong>Note 1.2: Comparative Lens</strong><br>
+      Vietnam serves purely as a comparative analytical lens on sovereign self-assertion, not as a core subject of study[cite: 1].</p>
+    </div>
+  </section>
+
+  <!-- SECTION 2: RESEARCH FOCUS & PILLARS -->
+  <section class="editorial-grid">
+    <div class="section-sidebar">
+      <span class="section-number">02</span>
+      <h2 class="section-title">Research Focus & Core Pillars</h2>
+    </div>
+
+    <div class="section-body">
+      <p>This research investigates Ivorian couture: how it can function as cultural infrastructure, shaping international perception, aspiration, and cultural legitimacy, and what it would take for a strong, recognisable Ivorian aesthetic identity to operate as an autonomous engine of soft power[cite: 1].</p>
+
+      <table class="thesis-table">
+        <thead>
+          <tr>
+            <th>Pillar Framework</th>
+            <th>Theoretical Core</th>
+            <th>Application Scope</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>01. Theoretical & Psychological</strong></td>
+            <td>Fanon's 3-Phase Framework & Amin's Eurocentric Ideology[cite: 1]</td>
+            <td>Deconstructing colonial assimilation & reclaiming historical continuity (Akan-Baoulé)[cite: 1].</td>
+          </tr>
+          <tr>
+            <td><strong>02. Sartorial Subversion</strong></td>
+            <td>La Sape to Imane Ayissi's Grande Couture[cite: 1]</td>
+            <td>Grassroots subversion to high-fashion blueprints for Ivorian couture autonomy[cite: 1].</td>
+          </tr>
+          <tr>
+            <td><strong>03. Political Economy</strong></td>
+            <td>Ha-Joon Chang's Dependency Model[cite: 1]</td>
+            <td>Overcoming raw material export dependencies via digital/spatial platforms[cite: 1].</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>The research proposes a speculative "Ivorian fashion identity"—a deliberately constructed aesthetic language, argued from within one Francophone West African context shaped by French colonial assimilation policy[cite: 1]. Proposing this identity gives Ivorian couture a legible, coherent language to circulate on, rather than leaving that language undefined[cite: 1].</p>
+    </div>
+
+    <div class="section-margin-notes">
+      <p><strong>Structural Risk:</strong><br>
+      Local production faces a system positioned to export raw material rather than finished, high-margin goods[cite: 1].</p>
+    </div>
+  </section>
+
+  <!-- SECTION 3: VISUALIZATION INTERVENTION -->
+  <section class="editorial-grid">
+    <div class="figure-container">
+      <div class="section-sidebar" style="position:static; margin-bottom:1rem;">
+        <span class="section-number">Figure 1.1</span>
+        <h2 class="section-title">Theoretical Mapping: Areas of Knowledge & Practice</h2>
+      </div>
+      
+      <!-- SVG REACTION OF THE KNOWLEDGE MAP -->
+      <svg class="diagram-svg" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+        <style>
+          .node { fill-opacity: 0.75; mix-blend-mode: multiply; }
+          .label-text { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; text-anchor: middle; fill: #111; }
+          .center-text { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; text-anchor: middle; fill: #fff; }
+        </style>
+        
+        <!-- CIRCLES REPRESENTING DISCIPLINES -->
+        <circle class="node" cx="400" cy="225" r="90" fill="#1e293b" />
+        <circle class="node" cx="400" cy="110" r="65" fill="#93c5fd" />
+        <circle class="node" cx="510" cy="160" r="60" fill="#3b82f6" />
+        <circle class="node" cx="510" cy="290" r="70" fill="#ef4444" />
+        <circle class="node" cx="410" cy="340" r="50" fill="#fca5a5" />
+        <circle class="node" cx="310" cy="320" r="45" fill="#fdba74" />
+        <circle class="node" cx="280" cy="230" r="65" fill="#f43f5e" />
+        <circle class="node" cx="300" cy="140" r="55" fill="#cbd5e1" />
+
+        <!-- LABELS -->
+        <text x="400" y="220" class="center-text">FASHION &amp;</text>
+        <text x="400" y="235" class="center-text">TEXTILE DESIGN</text>
+
+        <text x="400" y="105" class="label-text">PSYCHOLOGY OF</text>
+        <text x="400" y="117" class="label-text">CULTURAL IDENTITY</text>
+
+        <text x="510" y="158" class="label-text">MEDIA &amp; VISUAL</text>
+        <text x="510" y="170" class="label-text">CULTURE STUDIES</text>
+
+        <text x="510" y="288" class="label-text">POLITICAL SCIENCE</text>
+        <text x="510" y="300" class="label-text">&amp; GEOPOLITICS</text>
+
+        <text x="280" y="228" class="label-text">AFRICAN HISTORY &amp;</text>
+        <text x="280" y="240" class="label-text">MATERIAL CULTURE</text>
+      </svg>
+
+      <div class="figure-caption">
+        <span>Visualisation 1.1 — Interdisciplinary Weight Distribution &amp; Conceptual Intersections[cite: 1].</span>
+        <span>Source: Thesis Conceptual Framework[cite: 1]</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: STAKEHOLDER SYSTEM -->
+  <section class="editorial-grid">
+    <div class="section-sidebar">
+      <span class="section-number">03</span>
+      <h2 class="section-title">Stakeholder Systems &amp; Constraints</h2>
+    </div>
+
+    <div class="section-body">
+      <p>The stakeholder system operating around Ivorian fashion comprises three distinct structural rings[cite: 1]:</p>
+      
+      <p><strong>Core (Cultural Production System):</strong> Independent designers, couturiers de famille, neighbourhood tailoring guilds, and material artisans (Tapa bark-cloth harvesters, Kente and Baoulé weavers) sit at the actual centre of this ecosystem[cite: 1]. They decide what reads as desirable and contemporary without waiting on institutional direction[cite: 1].</p>
+
+      <p><strong>Direct (Circulation Ecosystem):</strong> Domestic consumers, diaspora, high-visibility cultural ambassadors (e.g., national football team tarmac looks), and local platforms like Abidjan Fashion Week[cite: 1].</p>
+
+      <p><strong>Indirect (Institutional Frameworks):</strong> State institutions including the Ministry of Culture, INSAAC, and UNESCO partnerships[cite: 1]. Their involvement to date has been reactive and event-based rather than architectural[cite: 1].</p>
+    </div>
+
+    <div class="section-margin-notes">
+      <p><strong>Core Constraints:</strong><br>
+      • <em>Institutional Risks:</em> Lack of centralized policy or domestic protectionism[cite: 1].<br>
+      • <em>Material Value-Chain Risks:</em> High labor times vs. fast commercial imports[cite: 1].<br>
+      • <em>Interpretive Risks:</em> Binary trap between rigid "authenticity" and Eurocentric baselines[cite: 1].</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="editorial-footer">
+    <span>M.A. Design Thesis — Intro</span>
+    <span>Editorial Visual System</span>
+    <span>Page 01</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
